@@ -133,9 +133,13 @@ int main()
     UnregisterClass(TEXT("SFML App"), instance);
 
     return EXIT_SUCCESS;
-    //dflgh
-    //dfgjksn
     //
+
+
+
+    //ХЫ
+    //  У
+    //      Й   
     //
     //
 }
