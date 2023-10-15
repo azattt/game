@@ -102,7 +102,7 @@ class Collision
 int main()
 {
 
-    TextureManager texture_manager("../../resources/");
+    TextureManager texture_manager("./resources/");
     Collision collision;
     Vec2f player_position{400.0f, 300.0f};
 
