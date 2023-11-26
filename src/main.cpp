@@ -2,9 +2,13 @@
 #include <iostream>
 #include <string>
 #include <vector>
+#include <random>
 
 #include <SFML/Graphics.hpp>
 #include <SFML/Window.hpp>
+
+#define STB_IMAGE_IMPLEMENTATION
+#include "stb_image.h"
 
 class TextureManager
 {
@@ -101,9 +105,42 @@ class Collision
     std::vector<CollisionBox> collision_boxes;
 };
 
+unsigned char* load_image(std::string path,)
+
+
+struct Texture
+{
+    unsigned char* image;
+    int width;
+    int height;
+    int channels;
+};
 int main()
 {
-    TextureManager texture_manager("./resources/");
+    std::vector<unsigned char*> images;
+    int width, height, channels;
+    unsigned char* image = stbi_load("./resources/minetcraft/grass_block_top.png", &width, &height, &channels, 4);
+    for (int x = 0; x < width; x++){
+        for (int y = 0; y < height; y++){
+            image[(y*width + x)*4] *= 0.52;
+            image[(y*width + x)*4+1] *= 0.67;
+            image[(y*width + x)*4+2] *= 0.41;
+            image[(y*width + x)*4+3] = 255;
+        }
+    }
+    sf::Texture grass_texture;
+    grass_texture.create(width, height);
+    grass_texture.update(image);
+    sf::Sprite sprite(grass_texture);
+    // sprite.setScale(sf::Vector2f(10.0f, 10.0f));
+    int** grid = new int*[100];
+    for (int i = 0; i < 100; i++){
+        grid[i] = new int[100];
+        for (int j = 0; j < 100; j++){
+            grid[i][j] =
+        }
+    }
+
     Vec2f player_position{400.0f, 300.0f};
 
     sf::RenderWindow window(sf::VideoMode(800, 600), "My window");
@@ -122,8 +159,9 @@ int main()
                 std::cout << event.mouseButton.x << " " << event.mouseButton.y << std::endl;
             }
         }
-
+        
         window.clear(sf::Color::Black);
+        window.draw(sprite);
         window.display();
     }
 }

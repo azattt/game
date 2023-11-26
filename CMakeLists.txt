@@ -13,6 +13,8 @@ add_executable(game src/main.cpp)
 target_link_libraries(game PRIVATE sfml-graphics)
 target_compile_features(game PRIVATE cxx_std_17)
 
+target_include_directories(game PRIVATE ${CMAKE_CURRENT_LIST_DIR}/external)
+
 if(WIN32)
     add_custom_command(
         TARGET game
